@@ -2,6 +2,9 @@ FROM cloudron/base:5.1.0@sha256:1c0666c9abe9e2090d33686826d4e97769b799124573118d
 
 LABEL org.opencontainers.image.source="https://github.com/marcusquinn/cloudron-headscale-app"
 
+ENV PATH="/app/code/bin:${PATH}" \
+    HEADSCALE_CONFIG=/app/data/config.yaml
+
 ARG HEADSCALE_VERSION=0.29.4
 ARG HEADSCALE_SHA256=212ed0a884c0d3541e094c4bebbe94397df6f4e01bd3d7f059c520cb55e0d757
 
