@@ -1,0 +1,8 @@
+.git
+.github
+.tmp-data
+CloudronVersions.json
+docs
+media
+test
+*.md
