@@ -23,7 +23,8 @@ Community Apps submission is the stated end goal; it needs credentials and a rea
 3. Install on the Cloudron: `cloudron install --versions-url <PUBLIC_VERSIONS_URL> --location headscale-test`.
 4. Qualify: health check green; `cloudron exec` → `headscale users create`/`preauthkeys create`; one Tailscale client registers via `--login-server`; two clients ping each other; DERP relay works with direct UDP blocked; SSO login works when enabled; restart, update (install the next catalog version when available) and backup/restore keep state.
 5. Sign in at [Cloudron Community Apps](https://ca.cloudron.io), add the versions URL, and verify the imported icon, hero, description, changelog and install URL.
-6. Record evidence (commands, screenshots ≤1568px) in the issue, then add a Headscale section to aidevops `.agents/reference/mesh-remote-workers.md` via a separate aidevops task.
+6. In local `~/.config/aidevops/repos.json`, set `cloudron_package.monitor_upstream` and `monitor_compatibility` to `true` for this repo (disabled until a manifest exists).
+7. Record evidence (commands, screenshots ≤1568px) in the issue, then add a Headscale section to aidevops `.agents/reference/mesh-remote-workers.md` via a separate aidevops task.
 
 ## Acceptance Criteria
 
