@@ -18,7 +18,7 @@ contains() {
 
 main() {
     jq -e '.id == "com.marcusquinn.cloudron.headscale" and .httpPort == 8080 and .healthCheckPath == "/health" and .optionalSso == true and .udpPorts.STUN_PORT.defaultValue == 3479 and .addons.localstorage == {} and .addons.oidc.loginRedirectUri == "/oidc/callback"' "${ROOT_DIR}/CloudronManifest.json" >/dev/null || fail "manifest contract failed" || return 1
-    contains Dockerfile 'cloudron/base:5.1.0@sha256:1c0666c9abe9e2090d33686826d4e97769b799124573118d41e0d7485135748e' || return 1
+    contains Dockerfile 'cloudron/base:6.0.0@sha256:9bed4c8fa880645f8e669041ee28febe941481d00e9445e3e5a5483cb541d09b' || return 1
     contains Dockerfile 'HEADSCALE_SHA256=212ed0a884c0d3541e094c4bebbe94397df6f4e01bd3d7f059c520cb55e0d757' || return 1
     # shellcheck disable=SC2016 # The Dockerfile literal must retain ${PATH}.
     contains Dockerfile 'ENV PATH="/app/code/bin:${PATH}"' || return 1
