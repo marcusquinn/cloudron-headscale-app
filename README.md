@@ -56,8 +56,8 @@ app's Terminal:
 
 ```sh
 headscale users create alice
-headscale users list                       # note the user ID
-headscale preauthkeys create --user 1 --expiration 1h
+headscale users list                       # find alice's ID
+headscale preauthkeys create --user <ID> --expiration 1h
 ```
 
 Then on the device:
