@@ -1,0 +1,88 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: MIT -->
+<!-- Store slide template: render with scripts/render-store-media.sh (1200x400 at 2x). -->
+<!-- Terminal output is representative, modelled on the qualification run with example names and domains. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; width: 1200px; height: 400px; overflow: hidden; }
+  body {
+    background: #141416;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+  }
+  .copy { position: absolute; left: 56px; top: 0; bottom: 0; width: 360px;
+          display: flex; flex-direction: column; justify-content: center; }
+  .eyebrow { color: #f8b5cb; font-size: 12.5px; font-weight: 600;
+             letter-spacing: .14em; text-transform: uppercase; }
+  .rule { width: 36px; height: 2px; background: #f8b5cb; margin: 14px 0 18px; }
+  h1 { color: #f4f4f5; font-size: 34px; line-height: 1.15; font-weight: 700;
+       margin: 0 0 14px; letter-spacing: -.01em; }
+  p { color: #a1a1aa; font-size: 16.5px; line-height: 1.5; margin: 0; }
+  .term { position: absolute; left: 460px; top: 48px; width: 800px; height: 420px;
+          border-radius: 12px 0 0 0; border: 1px solid #2c2c31; background: #0b0b0d;
+          box-shadow: 0 24px 60px -12px rgba(0,0,0,.6); overflow: hidden; }
+  .bar { height: 30px; background: #1c1c20; border-bottom: 1px solid #2c2c31;
+         display: flex; align-items: center; padding-left: 14px; gap: 7px; }
+  .bar i { width: 11px; height: 11px; border-radius: 50%; background: #3a3a40; display: block; }
+  pre { margin: 0; padding: 18px 22px; color: #d4d4d8; font-size: 14px; line-height: 1.6;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace; white-space: pre; }
+  .p { color: #f8b5cb; }
+  .c { color: #7dd3a8; }
+  .m { color: #71717a; }
+</style>
+</head>
+<body>
+  <div class="copy">
+    <div class="eyebrow">Headscale on Cloudron</div>
+    <div class="rule"></div>
+    <h1 id="title"></h1>
+    <p id="body"></p>
+  </div>
+  <div class="term"><div class="bar"><i></i><i></i><i></i></div><pre id="out"></pre></div>
+<script>
+  // Slides: headline, body line, terminal HTML (static, trusted template text).
+  var slides = {
+    "1": ["Your own Tailscale control server",
+          "Use the official Tailscale apps on every device, coordinated by a server you run.",
+          '<span class="p">$</span> tailscale up --login-server https://headscale.example.com\n' +
+          '<span class="p">$</span> tailscale status\n' +
+          '100.64.0.1  laptop   alice  macOS    -\n' +
+          '100.64.0.2  phone    alice  iOS      <span class="c">active; direct</span>\n' +
+          '100.64.0.3  server   alice  linux    <span class="c">active; direct</span>\n' +
+          '100.64.0.4  nas      bob    linux    <span class="c">active; relay "headscale"</span>'],
+    "2": ["Sign in with Cloudron",
+          "New devices open a Cloudron login. The app's access control decides who can join.",
+          '<span class="p">$</span> tailscale up --login-server https://headscale.example.com\n\n' +
+          'To authenticate, visit:\n\n' +
+          '        https://headscale.example.com/register/<span class="m">…</span>\n\n' +
+          '<span class="m"># → redirects to https://my.example.com/openid/auth</span>\n' +
+          '<span class="c">Success.</span>'],
+    "3": ["Relay included",
+          "An embedded DERP relay and STUN port connect devices behind strict NAT.",
+          '<span class="p">$</span> tailscale netcheck\n' +
+          '        * UDP: true\n' +
+          '        * Nearest DERP: Headscale Embedded DERP\n' +
+          '                - headscale: 38.3ms  (Headscale Embedded DERP)\n\n' +
+          '<span class="p">$</span> tailscale ping 100.64.0.6\n' +
+          'pong from nas (100.64.0.6) via <span class="c">DERP(headscale)</span> in 75ms'],
+    "4": ["Users and keys from the terminal",
+          "Create users and pre-auth keys for servers and headless devices in the app's Terminal.",
+          '<span class="p">$</span> headscale users create alice\n' +
+          'User created\n' +
+          '<span class="p">$</span> headscale preauthkeys create --user 1 --reusable --expiration 24h\n' +
+          '<span class="m">hskey-auth-…</span>\n' +
+          '<span class="p">$</span> headscale nodes list\n' +
+          'ID | Hostname | User  | IP addresses | Connected\n' +
+          '1  | laptop   | alice | 100.64.0.1   | <span class="c">online</span>\n' +
+          '2  | server   | alice | 100.64.0.3   | <span class="c">online</span>']
+  };
+  var s = slides[location.hash.slice(1)] || slides["1"];
+  document.getElementById("title").textContent = s[0];
+  document.getElementById("body").textContent = s[1];
+  document.getElementById("out").innerHTML = s[2];
+</script>
+</body>
+</html>
