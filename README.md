@@ -46,6 +46,10 @@ your server's `/apple` and `/windows` pages show the steps. Anyone allowed by
 the app's Cloudron access control can add devices; Headscale creates a user for
 each person on first sign-in.
 
+The link works only while `tailscale up` is still waiting, and only for a
+limited time. If the page says **Gone: Your session has expired**, run
+`tailscale up` again and open the new link straight away.
+
 **With a pre-auth key**, for servers and devices without a browser. In the
 app's Terminal:
 
