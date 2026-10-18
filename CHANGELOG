@@ -1,3 +1,7 @@
+[0.1.1]
+* Link the Cloudron forum topic for questions and feedback.
+* No change to the app; Headscale is still 0.29.5.
+
 [0.1.0]
 * Initial Cloudron package for Headscale 0.29.5.
 * Sign in with Cloudron (OIDC) when adding devices; pre-auth keys for headless devices.

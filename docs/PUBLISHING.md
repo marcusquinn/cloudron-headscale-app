@@ -27,8 +27,11 @@ Before enabling it:
    `HEADSCALE_SHA256` in the `Dockerfile` from the upstream release's
    `checksums.txt` (`headscale_<version>_linux_amd64`), and `upstreamVersion`,
    always together. Read the upstream changelog for configuration changes.
+   A package-only release, such as a manifest or listing change, keeps the
+   pin; say so in the changelog.
 2. Qualify the build on a test install (below), review, and merge with a merge
-   commit.
+   commit. A package-only release that leaves the `Dockerfile` and scripts
+   unchanged needs only the PR checks.
 3. The catalog workflow builds `linux/amd64`, pushes
    `ghcr.io/marcusquinn/cloudron-headscale-app:<version>` and attests the image
    digest with GitHub keyless provenance.

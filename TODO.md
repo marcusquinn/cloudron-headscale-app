@@ -76,6 +76,8 @@ Format: `- [ ] tNNN Description @owner #tag ~estimate risk:level logged:date`
 
 - [ ] t6 docs: link the Cloudron forum announcement #documentation ref:GH#23
 
+- [ ] t7 chore: release 0.1.1 with the forum link #documentation ref:GH#26
+
 ## In Progress
 
 <!--TOON:in_progress[0]{id,desc,owner,tags,est,risk,logged,started,status}:

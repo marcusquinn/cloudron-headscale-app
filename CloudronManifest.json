@@ -4,7 +4,7 @@
   "author": "Marcus Quinn <marcus@marcusquinn.com>",
   "description": "file://DESCRIPTION.md",
   "tagline": "Self-hosted Tailscale control server with SSO and a DERP relay",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "upstreamVersion": "0.29.5",
   "healthCheckPath": "/health",
   "httpPort": 8080,

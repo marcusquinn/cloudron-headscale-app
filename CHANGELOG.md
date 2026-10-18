@@ -3,6 +3,14 @@
 All notable changes to this package are documented in this file. The store
 changelog is `CHANGELOG`.
 
+## [0.1.1] - 2026-10-18
+
+### Added
+
+- `forumUrl` in the manifest, so the store links the
+  [Cloudron forum topic](https://forum.cloudron.io/topic/16152/headscale-self-hosted-tailscale-control-server-with-cloudron-sso-and-a-built-in-derp-relay).
+  No change to the app image contents; Headscale stays at 0.29.5.
+
 ## [0.1.0] - 2026-10-18
 
 ### Added
