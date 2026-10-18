@@ -17,5 +17,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
 
 COPY config.template.yaml start.sh /app/code/
 RUN chmod 0755 /app/code/start.sh
-EXPOSE 8080 3479/udp
+EXPOSE 8080 3480/udp
 CMD ["/app/code/start.sh"]

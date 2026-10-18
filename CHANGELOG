@@ -1,5 +1,5 @@
-# Changelog
-
-## [0.1.0] - 2026-09-28
-
-- Initial Cloudron package for Headscale 0.29.4.
+[0.1.0]
+* Initial Cloudron package for Headscale 0.29.5.
+* Sign in with Cloudron (OIDC) when adding devices; pre-auth keys for headless devices.
+* Embedded DERP relay over HTTPS, with STUN on UDP 3480 by default.
+* SQLite database, keys and config.yaml in /app/data, included in backups.
