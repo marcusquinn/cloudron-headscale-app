@@ -177,9 +177,9 @@ jobs:
           retention-days: 7
 
   # Only this job can write to the repository. It runs no third-party code and
-  # pushes only a catalog whose attestation it has verified itself.
+  # pushes only a catalog whose attestation and contents it has verified itself.
   push:
-    needs: [preflight, publish]
+    needs: [preflight, build, publish]
     if: needs.preflight.outputs.publish == 'true'
     runs-on: ubuntu-24.04
     permissions:
@@ -199,10 +199,28 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           SOURCE: ${{ needs.preflight.outputs.source }}
+          VERSION: ${{ needs.preflight.outputs.version }}
+          IMAGE: ${{ needs.build.outputs.image }}
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$SOURCE"
           gh attestation verify "$RUNNER_TEMP/catalog/CloudronVersions.json" --repo "$GITHUB_REPOSITORY" --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/cloudron-catalog-publish.yml" --source-ref refs/heads/main
+          # aidevops:trust-boundary — provenance alone does not make CLI output safe to commit.
+          jq -e --slurpfile candidate "$RUNNER_TEMP/catalog/CloudronVersions.json" \
+            --arg version "$VERSION" --arg image "$IMAGE" '
+            . as $source | $candidate[0] as $catalog |
+            ($candidate | length) == 1 and
+            ($catalog | type) == "object" and
+            ($catalog.versions | type) == "object" and
+            ($source.versions | has($version) | not) and
+            (($catalog.versions | keys) == (($source.versions | keys) + [$version] | sort)) and
+            (all($source.versions | keys[]; . as $v | $catalog.versions[$v] == $source.versions[$v])) and
+            (($catalog | del(.versions)) == ($source | del(.versions))) and
+            ($catalog.versions[$version].publishState == "published") and
+            ($catalog.versions[$version].manifest.version == $version) and
+            ($catalog.versions[$version].manifest.dockerImage == $image) and
+            ($image | test("^ghcr\\.io/marcusquinn/cloudron-headscale-app@sha256:[0-9a-f]{64}$"))
+            ' CloudronVersions.json >/dev/null
           cp "$RUNNER_TEMP/catalog/CloudronVersions.json" CloudronVersions.json
       - name: Commit catalog and tag atomically
         env:
