@@ -60,6 +60,67 @@
             "creationDate": "Sun, 18 Oct 2026 19:35:16 GMT",
             "ts": "Sun, 18 Oct 2026 19:35:16 GMT",
             "publishState": "published"
+        },
+        "0.1.1": {
+            "manifest": {
+                "id": "com.marcusquinn.cloudron.headscale",
+                "title": "Headscale",
+                "author": "Marcus Quinn <marcus@marcusquinn.com>",
+                "description": "Headscale is an open-source, self-hosted implementation of the Tailscale\ncontrol server. Devices run the official Tailscale apps and join a private\nWireGuard mesh (a \"tailnet\") that your Cloudron coordinates, instead of\nTailscale's hosted service.\n\n### Features\n\n* **Official Tailscale clients** on Linux, macOS, Windows, iOS and Android,\n  pointed at your server with `--login-server`.\n* **Direct WireGuard connections** between devices, with NAT traversal.\n* **Embedded DERP relay** for devices that cannot connect directly. Tailscale's\n  public relays stay available as a fallback.\n* **MagicDNS** names for every device, plus ACL policies, tags, subnet routers\n  and exit nodes.\n* **Pre-auth keys** for servers and devices that cannot open a browser.\n\n### Cloudron integration\n\n* **Single sign-on:** `tailscale up` opens a Cloudron login. The app's access\n  control decides who can add devices.\n* **One HTTPS address:** control traffic, the Noise protocol and the DERP relay\n  all use the app's HTTPS domain. One extra UDP port carries STUN.\n* **Backups:** the SQLite database, keys and `config.yaml` in `/app/data` are\n  in Cloudron backups.\n\nHeadscale has no web interface. Manage users, devices, keys and routes with the\n`headscale` command in the app's Terminal.\n\n[Headscale](https://github.com/juanfont/headscale) is open source under the\nBSD-3-Clause licence. This package is maintained independently of the\nHeadscale project and is not affiliated with Tailscale Inc.\n",
+                "tagline": "Self-hosted Tailscale control server with SSO and a DERP relay",
+                "version": "0.1.1",
+                "upstreamVersion": "0.29.5",
+                "healthCheckPath": "/health",
+                "httpPort": 8080,
+                "manifestVersion": 2,
+                "website": "https://headscale.net",
+                "contactEmail": "marcus@marcusquinn.com",
+                "icon": "file://logo.png",
+                "iconUrl": "https://raw.githubusercontent.com/marcusquinn/cloudron-headscale-app/b0613489b549c49621f682067a06b0619277a094/logo.png",
+                "mediaLinks": [
+                    "https://raw.githubusercontent.com/marcusquinn/cloudron-headscale-app/b0613489b549c49621f682067a06b0619277a094/media/listing-1-devices.png",
+                    "https://raw.githubusercontent.com/marcusquinn/cloudron-headscale-app/b0613489b549c49621f682067a06b0619277a094/media/listing-2-sso.png",
+                    "https://raw.githubusercontent.com/marcusquinn/cloudron-headscale-app/b0613489b549c49621f682067a06b0619277a094/media/listing-3-relay.png",
+                    "https://raw.githubusercontent.com/marcusquinn/cloudron-headscale-app/b0613489b549c49621f682067a06b0619277a094/media/listing-4-terminal.png"
+                ],
+                "documentationUrl": "https://github.com/marcusquinn/cloudron-headscale-app/blob/main/README.md",
+                "forumUrl": "https://forum.cloudron.io/topic/16152/headscale-self-hosted-tailscale-control-server-with-cloudron-sso-and-a-built-in-derp-relay",
+                "upstreamLicense": {
+                    "name": "BSD-3-Clause",
+                    "url": "https://github.com/juanfont/headscale/blob/v0.29.5/LICENSE"
+                },
+                "minBoxVersion": "9.1.0",
+                "memoryLimit": 268435456,
+                "optionalSso": true,
+                "addons": {
+                    "localstorage": {},
+                    "oidc": {
+                        "loginRedirectUri": "/oidc/callback"
+                    }
+                },
+                "udpPorts": {
+                    "STUN_PORT": {
+                        "title": "STUN (NAT traversal)",
+                        "description": "UDP port for the embedded DERP relay's STUN service. Disabling it also disables the embedded relay; devices then use Tailscale's public relays. Avoid 3478 (Cloudron TURN) and ports other apps use.",
+                        "defaultValue": 3480
+                    }
+                },
+                "tags": [
+                    "vpn",
+                    "tailscale",
+                    "wireguard",
+                    "networking",
+                    "security"
+                ],
+                "postInstallMessage": "Headscale is running. It has no web interface; devices connect with the\nTailscale app and you manage it from the app's Terminal.\n\n<sso>\n**Add a device:** run\n\n    tailscale up --login-server https://$CLOUDRON-APP-FQDN\n\nand sign in with your Cloudron account in the browser that opens. Every\nCloudron user allowed by this app's access control can add devices. On macOS,\niOS and Windows, set the server under the app's alternate coordination server\noption; see `https://$CLOUDRON-APP-FQDN/apple` and `/windows`.\n</sso>\n\n<nosso>\n**Add a device:** in the Terminal, create a user, find its ID, and create a\npre-auth key for that ID:\n\n    headscale users create alice\n    headscale users list\n    headscale preauthkeys create --user <ID> --expiration 1h\n\nthen on the device run\n`tailscale up --login-server https://$CLOUDRON-APP-FQDN --authkey <key>`.\n</nosso>\n\n**Servers and headless devices:** use a pre-auth key as above. List devices\nwith `headscale nodes list`.\n\n**STUN port:** if your server sits behind a provider firewall, allow the UDP\nport shown under *Location*, so devices can find direct paths and use the\nembedded relay.\n\nSettings live in `/app/data/config.yaml`; restart after editing. Setup guide:\n[README](https://github.com/marcusquinn/cloudron-headscale-app/blob/main/README.md).\n",
+                "changelog": "* Link the Cloudron forum topic for questions and feedback.\n* No change to the app; Headscale is still 0.29.5.\n",
+                "packagerName": "Marcus Quinn",
+                "packagerUrl": "https://github.com/marcusquinn",
+                "dockerImage": "ghcr.io/marcusquinn/cloudron-headscale-app@sha256:b597fc0de3f26706d4b1fa70ebe8ea35b6364f84fef9f9e34f0defb3d3e8e5e1"
+            },
+            "creationDate": "Sun, 18 Oct 2026 21:06:47 GMT",
+            "ts": "Sun, 18 Oct 2026 21:06:48 GMT",
+            "publishState": "published"
         }
     }
 }
