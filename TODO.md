@@ -74,6 +74,8 @@ Format: `- [ ] tNNN Description @owner #tag ~estimate risk:level logged:date`
 <!--TOON:backlog[0]{id,desc,owner,tags,est,risk,logged,status}:
 -->
 
+- [ ] t6 docs: link the Cloudron forum announcement #documentation ref:GH#23
+
 ## In Progress
 
 <!--TOON:in_progress[0]{id,desc,owner,tags,est,risk,logged,started,status}:

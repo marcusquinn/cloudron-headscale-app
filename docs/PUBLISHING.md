@@ -103,5 +103,8 @@ jq -r '.iconUrl, .mediaLinks[]' CloudronManifest.json | xargs -n1 curl -sS -o /d
 To list the app on [Cloudron Community Apps](https://ca.cloudron.io), sign in,
 add the catalog URL, and check the imported title, icon, screenshots, changelog
 and install link. Then post an announcement in the forum's
-[Community Apps](https://forum.cloudron.io/category/220/community-apps)
-category. Both are publication actions for the maintainer.
+[Community Packages](https://forum.cloudron.io/category/220/community-packages)
+category, record it in [ANNOUNCEMENT.md](ANNOUNCEMENT.md), and set the
+manifest's `forumUrl` to the topic. Both are publication actions for the
+maintainer; the `forumUrl` reaches the store listing with the next package
+release.
