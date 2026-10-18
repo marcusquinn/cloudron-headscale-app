@@ -110,6 +110,10 @@ keep working.
 - [Publishing](docs/PUBLISHING.md): release pipeline and qualification
   checklist.
 
+Questions and feedback: the
+[Cloudron forum topic](https://forum.cloudron.io/topic/16152/headscale-self-hosted-tailscale-control-server-with-cloudron-sso-and-a-built-in-derp-relay).
+Packaging bugs: [GitHub issues](https://github.com/marcusquinn/cloudron-headscale-app/issues).
+
 This package is maintained independently of the Headscale project and is not
 affiliated with Tailscale Inc. Headscale is BSD-3-Clause; this package is MIT.
 

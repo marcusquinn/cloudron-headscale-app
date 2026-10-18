@@ -20,6 +20,7 @@
     "https://raw.githubusercontent.com/marcusquinn/cloudron-headscale-app/b0613489b549c49621f682067a06b0619277a094/media/listing-4-terminal.png"
   ],
   "documentationUrl": "https://github.com/marcusquinn/cloudron-headscale-app/blob/main/README.md",
+  "forumUrl": "https://forum.cloudron.io/topic/16152/headscale-self-hosted-tailscale-control-server-with-cloudron-sso-and-a-built-in-derp-relay",
   "upstreamLicense": {
     "name": "BSD-3-Clause",
     "url": "https://github.com/juanfont/headscale/blob/v0.29.5/LICENSE"
