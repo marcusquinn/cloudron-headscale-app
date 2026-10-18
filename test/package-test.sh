@@ -21,7 +21,7 @@ contains() {
 }
 
 main() {
-    local file version
+    local file version push_job
     cd "${ROOT_DIR}"
     jq -e '.id == "com.marcusquinn.cloudron.headscale" and .manifestVersion == 2 and .httpPort == 8080
         and .healthCheckPath == "/health" and .minBoxVersion == "9.1.0" and .optionalSso == true
@@ -65,6 +65,12 @@ main() {
     jq -e '.versions | type == "object"' CloudronVersions.json >/dev/null || fail "CloudronVersions.json malformed" || return 1
     contains .github/workflows/cloudron-catalog-publish.yml 'CLOUDRON_PUBLICATION_ENABLED' || return 1
     contains .github/workflows/cloudron-catalog-publish.yml 'scripts/create-github-release.sh' || return 1
+    # Check the write-capable job, not only the unprivileged publish job.
+    push_job="$(sed -n '/^  push:/,/^  release:/p' .github/workflows/cloudron-catalog-publish.yml)"
+    grep -Fq 'needs: [preflight, build, publish]' <<< "${push_job}" || fail "push job must depend on the image build" || return 1
+    grep -Fq -- 'jq -e --slurpfile candidate' <<< "${push_job}" || fail "push job must validate catalog contents" || return 1
+    # shellcheck disable=SC2016 # Literal jq text, not a shell expansion.
+    grep -Fq -- '$catalog.versions[$v] == $source.versions[$v]' <<< "${push_job}" || fail "push job must preserve existing versions" || return 1
     contains docs/PUBLISHING.md 'CLOUDRON_PUBLICATION_ENABLED' || return 1
 
     for file in start.sh scripts/*.sh test/*.sh; do
