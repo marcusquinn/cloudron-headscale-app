@@ -2,11 +2,12 @@ FROM cloudron/base:6.0.0@sha256:9bed4c8fa880645f8e669041ee28febe941481d00e9445e3
 
 LABEL org.opencontainers.image.source="https://github.com/marcusquinn/cloudron-headscale-app"
 
-ENV PATH="/app/code/bin:${PATH}" \
-    HEADSCALE_CONFIG=/app/data/config.yaml
+ARG HEADSCALE_VERSION=0.29.5
+ARG HEADSCALE_SHA256=e979d27fe17d924d33bb6ab7504f6338d0635989a0cfdcfbc0ceb637dbcbe980
 
-ARG HEADSCALE_VERSION=0.29.4
-ARG HEADSCALE_SHA256=212ed0a884c0d3541e094c4bebbe94397df6f4e01bd3d7f059c520cb55e0d757
+ENV PATH="/app/code/bin:${PATH}" \
+    HEADSCALE_CONFIG=/app/data/config.yaml \
+    HEADSCALE_VERSION=${HEADSCALE_VERSION}
 
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl gosu && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /app/code/bin \

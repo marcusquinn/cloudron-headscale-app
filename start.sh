@@ -90,7 +90,7 @@ EOF
 backup_database_before_upgrade() {
     local version_path="${DATA_DIR}/.headscale-version"
     local previous_version=""
-    local current_version="0.29.4"
+    local current_version="${HEADSCALE_VERSION:?HEADSCALE_VERSION is set by the Dockerfile}"
 
     if [[ -f "${version_path}" ]]; then
         previous_version="$(<"${version_path}")"
