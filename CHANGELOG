@@ -1,3 +1,8 @@
+[0.1.2]
+* Update Headscale to 0.29.6 with upstream security fixes and peer-map performance improvements.
+* Update the pinned Cloudron base to 6.0.1 with its patched CA bundle.
+* Minimum supported Tailscale client remains 1.80.0.
+
 [0.1.1]
 * Link the Cloudron forum topic for questions and feedback.
 * No change to the app; Headscale is still 0.29.5.

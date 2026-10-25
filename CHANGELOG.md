@@ -3,6 +3,17 @@
 All notable changes to this package are documented in this file. The store
 changelog is `CHANGELOG`.
 
+## [0.1.2] - 2026-10-25
+
+### Changed
+
+- Update Headscale to 0.29.6 using the checksum-verified upstream Linux amd64
+  binary. This release includes Go certificate-chain protections, dependency
+  security updates, peer-map optimizations, and map-stream/database error fixes.
+- Update the digest-pinned Cloudron base to 6.0.1 with its patched CA bundle
+  (the same base-image pin proposed in PR #29).
+- Minimum supported Tailscale client remains 1.80.0.
+
 ## [0.1.1] - 2026-10-18
 
 ### Added
