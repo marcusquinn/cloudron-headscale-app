@@ -30,7 +30,7 @@ main() {
         fail "manifest contract failed" || return 1
 
     # Build inputs are pinned: base image digest and checksum-verified upstream binary.
-    contains Dockerfile 'FROM cloudron/base:6.0.0@sha256:9bed4c8fa880645f8e669041ee28febe941481d00e9445e3e5a5483cb541d09b' || return 1
+    contains Dockerfile 'FROM cloudron/base:6.0.1@sha256:7b1e729960c3ca312d26e886917ba89483241bba0219ff292858e10d9d5768ee' || return 1
     grep -Eq '^ARG HEADSCALE_SHA256=[0-9a-f]{64}$' Dockerfile || fail "Headscale binary checksum not pinned" || return 1
     version="$(sed -n 's/^ARG HEADSCALE_VERSION=//p' Dockerfile)"
     [[ "$(jq -r .upstreamVersion CloudronManifest.json)" == "${version}" ]] ||
