@@ -1,7 +1,7 @@
 {
   "schema": "aidevops.repo-metrics.v1",
   "schema_version": 1,
-  "generated_at": "2026-10-25T03:18:05Z",
+  "generated_at": "2026-10-26T05:57:09Z",
   "tool": {
     "name": "aidevops repo-metrics",
     "version": "1.0.0"
@@ -12,9 +12,9 @@
   },
   "summary": {
     "source_files": 36,
-    "code": 2111,
-    "comments": 92,
-    "blanks": 466,
+    "code": 1977,
+    "comments": 79,
+    "blanks": 460,
     "languages": 7,
     "dependencies": 0
   },
@@ -25,35 +25,35 @@
       "code": 1187,
       "comments": 0,
       "blanks": 403,
-      "percentage": 56.23,
+      "percentage": 60.04,
       "color": "#083fa1"
-    },
-    {
-      "name": "YAML",
-      "files": 7,
-      "code": 357,
-      "comments": 50,
-      "blanks": 22,
-      "percentage": 16.91,
-      "color": "#cb171e"
     },
     {
       "name": "Shell",
       "files": 5,
-      "code": 274,
+      "code": 278,
       "comments": 39,
       "blanks": 36,
-      "percentage": 12.98,
+      "percentage": 14.06,
       "color": "#89e051"
     },
     {
       "name": "JSON",
       "files": 2,
-      "code": 181,
+      "code": 242,
       "comments": 0,
       "blanks": 0,
-      "percentage": 8.57,
+      "percentage": 12.24,
       "color": "#292929"
+    },
+    {
+      "name": "YAML",
+      "files": 7,
+      "code": 141,
+      "comments": 37,
+      "blanks": 16,
+      "percentage": 7.13,
+      "color": "#cb171e"
     },
     {
       "name": "HTML",
@@ -61,8 +61,17 @@
       "code": 85,
       "comments": 3,
       "blanks": 0,
-      "percentage": 4.03,
+      "percentage": 4.3,
       "color": "#e34c26"
+    },
+    {
+      "name": "SVG",
+      "files": 1,
+      "code": 28,
+      "comments": 0,
+      "blanks": 0,
+      "percentage": 1.42,
+      "color": "#6e7781"
     },
     {
       "name": "Dockerfile",
@@ -70,17 +79,8 @@
       "code": 16,
       "comments": 0,
       "blanks": 5,
-      "percentage": 0.76,
+      "percentage": 0.81,
       "color": "#384d54"
-    },
-    {
-      "name": "SVG",
-      "files": 1,
-      "code": 11,
-      "comments": 0,
-      "blanks": 0,
-      "percentage": 0.52,
-      "color": "#6e7781"
     }
   ],
   "dependencies": {
