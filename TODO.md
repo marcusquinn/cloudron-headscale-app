@@ -69,14 +69,14 @@ Format: `- [ ] tNNN Description @owner #tag ~estimate risk:level logged:date`
 ## Backlog
 
 - [x] t4 Package Headscale as a Cloudron app through Community Apps submission #feature #cloudron #interactive #auto-dispatch ~6h tier:standard ref:GH#1 pr:#3 logged:2026-09-27 -> [todo/tasks/t4-brief.md] completed:2026-09-28
-- [ ] t5 Qualify Headscale package on Cloudron and submit to Community Apps #ops #cloudron #interactive ~1h blocked-by:t4 ref:GH#2 logged:2026-09-27 -> [todo/tasks/t5-brief.md]
+- [x] t5 Qualify Headscale package on Cloudron and submit to Community Apps #ops #cloudron #interactive ~1h blocked-by:t4 ref:GH#2 pr:#21 logged:2026-09-27 -> [todo/tasks/t5-brief.md] completed:2026-10-27
 
 <!--TOON:backlog[0]{id,desc,owner,tags,est,risk,logged,status}:
 -->
 
-- [ ] t6 docs: link the Cloudron forum announcement #documentation ref:GH#23
+- [x] t6 docs: link the Cloudron forum announcement #documentation ref:GH#23 pr:#24 completed:2026-10-27
 
-- [ ] t7 chore: release 0.1.1 with the forum link #documentation ref:GH#26
+- [x] t7 chore: release 0.1.1 with the forum link #documentation ref:GH#26 pr:#27 completed:2026-10-27
 
 ## In Progress
 
