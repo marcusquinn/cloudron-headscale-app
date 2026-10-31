@@ -78,6 +78,8 @@ Format: `- [ ] tNNN Description @owner #tag ~estimate risk:level logged:date`
 
 - [x] t7 chore: release 0.1.1 with the forum link #documentation ref:GH#26 pr:#27 completed:2026-10-27
 
+- [ ] t8 docs: make SECURITY.md supported versions release-independent #documentation ref:GH#40 -> [todo/tasks/t8-brief.md]
+
 ## In Progress
 
 <!--TOON:in_progress[0]{id,desc,owner,tags,est,risk,logged,started,status}:
