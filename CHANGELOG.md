@@ -3,6 +3,19 @@
 All notable changes to this package are documented in this file. The store
 changelog is `CHANGELOG`.
 
+## [0.1.3] - 2026-10-31
+
+### Changed
+
+- Update Headscale to 0.29.7 using the checksum-verified upstream Linux amd64
+  binary. This security release hardens registration and OIDC handling, bounds
+  client reports and pending authentication, and fixes denial-of-service issues.
+- Upgrade Tailscale clients separately to 1.104.4 or newer, especially SSH
+  destination nodes before using `acceptEnv`. Updating Headscale alone does not
+  apply the SSH forwarding, SSH session and Serve fixes in `tailscaled`.
+- Minimum supported Tailscale client remains 1.80.0. The digest-pinned Cloudron
+  base remains 6.0.1.
+
 ## [0.1.2] - 2026-10-25
 
 ### Changed

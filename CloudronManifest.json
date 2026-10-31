@@ -4,8 +4,8 @@
   "author": "Marcus Quinn <marcus@marcusquinn.com>",
   "description": "file://DESCRIPTION.md",
   "tagline": "Self-hosted Tailscale control server with SSO and a DERP relay",
-  "version": "0.1.2",
-  "upstreamVersion": "0.29.6",
+  "version": "0.1.3",
+  "upstreamVersion": "0.29.7",
   "healthCheckPath": "/health",
   "httpPort": 8080,
   "manifestVersion": 2,
@@ -23,7 +23,7 @@
   "forumUrl": "https://forum.cloudron.io/topic/16152/headscale-self-hosted-tailscale-control-server-with-cloudron-sso-and-a-built-in-derp-relay",
   "upstreamLicense": {
     "name": "BSD-3-Clause",
-    "url": "https://github.com/juanfont/headscale/blob/v0.29.6/LICENSE"
+    "url": "https://github.com/juanfont/headscale/blob/v0.29.7/LICENSE"
   },
   "minBoxVersion": "9.1.0",
   "memoryLimit": 268435456,
