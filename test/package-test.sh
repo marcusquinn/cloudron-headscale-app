@@ -24,7 +24,9 @@ main() {
     local file version workflow_ref policy_ref
     cd "${ROOT_DIR}"
     jq -e '.id == "com.marcusquinn.cloudron.headscale" and .manifestVersion == 2 and .httpPort == 8080
-        and .healthCheckPath == "/health" and .minBoxVersion == "9.1.0" and .optionalSso == true
+        and .healthCheckPath == "/health" and .minBoxVersion == "10.0.0" and .optionalSso == true
+        and .packagerUrl == "https://github.com/marcusquinn"
+        and .packageUrl == "https://github.com/marcusquinn/cloudron-headscale-app"
         and .udpPorts.STUN_PORT.defaultValue == 3480 and .addons.localstorage == {}
         and .addons.oidc.loginRedirectUri == "/oidc/callback"' CloudronManifest.json >/dev/null ||
         fail "manifest contract failed" || return 1

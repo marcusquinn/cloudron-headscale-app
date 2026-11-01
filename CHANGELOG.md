@@ -3,6 +3,16 @@
 All notable changes to this package are documented in this file. The store
 changelog is `CHANGELOG`.
 
+## [0.1.4] - 2026-11-01
+
+### Changed
+
+- Set `packageUrl` so the Community Apps Package button opens this repository;
+  `packagerUrl` still links the maintainer (issue #43).
+- Require Cloudron 10.0.0 (`minBoxVersion`). Cloudron 9 rejects `packageUrl`
+  anywhere in `CloudronVersions.json`, so 9.x servers can no longer read this
+  catalog. Headscale stays at 0.29.7; no app change.
+
 ## [0.1.3] - 2026-10-31
 
 ### Changed
