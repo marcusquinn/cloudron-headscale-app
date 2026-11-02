@@ -3,6 +3,16 @@
 All notable changes to this package are documented in this file. The store
 changelog is `CHANGELOG`.
 
+## [0.1.5] - 2026-11-02
+
+### Changed
+
+- Set `packagerUrl` to this repository so the Community Apps Package link opens it.
+  ca.cloudron.io builds the Package link (and the "By" link) from `packagerUrl`
+  and ignores `packageUrl`, so the 0.1.4 change had no visible effect
+  (marcusquinn/aidevops#36428). `packageUrl` and `minBoxVersion` 10.0.0 are unchanged.
+- No change to the app; Headscale stays at 0.29.7.
+
 ## [0.1.4] - 2026-11-01
 
 ### Changed
