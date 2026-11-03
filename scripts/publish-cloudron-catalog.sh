@@ -11,9 +11,12 @@ main() {
     local catalog="${1:-CloudronVersions.json}"
     local image="${2:-}"
     local version="${3:-}"
+    local min_box_version package_url
     [[ "$catalog" == CloudronVersions.json ]] || return 1
     [[ "$image" =~ $IMAGE_PATTERN ]] || return 1
     [[ "$version" == "$(jq -r .version CloudronManifest.json)" ]] || return 1
+    min_box_version="$(jq -r .minBoxVersion CloudronManifest.json)"
+    package_url="$(jq -r .packageUrl CloudronManifest.json)"
     # Only the CLI creates the catalog, including the first empty catalog.
     if [[ ! -f "$catalog" ]]; then
         cloudron versions init || return 1
@@ -24,10 +27,12 @@ main() {
     fi
     cloudron versions add --state testing --image "$image" || return 1
     jq -e --arg version "$version" --arg image "$image" \
-        '.versions[$version].manifest.version == $version and .versions[$version].manifest.dockerImage == $image and .versions[$version].publishState == "testing"' "$catalog" >/dev/null || return 1
+        --arg min_box_version "$min_box_version" --arg package_url "$package_url" \
+        '.versions[$version].manifest.version == $version and .versions[$version].manifest.dockerImage == $image and .versions[$version].manifest.minBoxVersion == $min_box_version and .versions[$version].manifest.packageUrl == $package_url and .versions[$version].publishState == "testing"' "$catalog" >/dev/null || return 1
     cloudron versions update --version="$version" --state=published --image "$image" || return 1
     jq -e --arg version "$version" --arg image "$image" \
-        '.versions[$version].manifest.dockerImage == $image and .versions[$version].publishState == "published"' "$catalog" >/dev/null || return 1
+        --arg min_box_version "$min_box_version" --arg package_url "$package_url" \
+        '.versions[$version].manifest.dockerImage == $image and .versions[$version].manifest.minBoxVersion == $min_box_version and .versions[$version].manifest.packageUrl == $package_url and .versions[$version].publishState == "published"' "$catalog" >/dev/null || return 1
     cloudron versions verify || return 1
     return 0
 }
