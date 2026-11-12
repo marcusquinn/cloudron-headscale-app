@@ -3,6 +3,16 @@
 All notable changes to this package are documented in this file. The store
 changelog is `CHANGELOG`.
 
+## [Unreleased]
+
+### Changed
+
+- Restore `packagerUrl` to the maintainer profile (issue #57), so the "By" link
+  opens the profile again. The listing builds the Package link from
+  `packagerUrl` and ignores `packageUrl`, so the Package link also opens the
+  profile until the listing reads `packageUrl`. `packageUrl` stays set to this
+  repository.
+
 ## [0.1.5] - 2026-11-02
 
 ### Changed
