@@ -1,3 +1,7 @@
+[0.1.6]
+* Update Headscale to 0.29.8, which sends each peer its own capability version so newer Tailscale clients can connect to older ones.
+* Minimum supported Tailscale client remains 1.80.0.
+
 [0.1.5]
 * The Community Apps Package link now opens this repository. The listing builds that link from packagerUrl, so the 0.1.4 packageUrl change had no visible effect.
 * No change to the app; Headscale stays at 0.29.7.

@@ -13,6 +13,14 @@ changelog is `CHANGELOG`.
   profile until the listing reads `packageUrl`. `packageUrl` stays set to this
   repository.
 
+## [0.1.6] - 2026-11-27
+
+### Changed
+
+- Update Headscale to 0.29.8, which sends each peer its own capability version
+  so newer Tailscale clients can connect to older ones.
+- Minimum supported Tailscale client remains 1.80.0.
+
 ## [0.1.5] - 2026-11-02
 
 ### Changed
